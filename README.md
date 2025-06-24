@@ -1,4 +1,4 @@
-#  Software Engineering Project
+#  Capstone Project
 ## Ambulance Management System
 ### Overview
 
