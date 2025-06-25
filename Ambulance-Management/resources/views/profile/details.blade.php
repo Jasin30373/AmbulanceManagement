@@ -6,7 +6,34 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img src="{{ $user->profile_image ? asset('storage/'.  $user->profile_image) : asset('img/no-image.jpg') }}" alt="Profile Picture" class="img-thumbnail" width="300px" />
+                        @php
+                            $doctorImages = [
+                                'doctors-1.jpg',
+                                'doctors-2.jpg',
+                                'doctors-4.jpg',
+                                'doctors-3.jpg',
+                                'doc.jpg',
+                            ];
+                            $doctorImagesCount = count($doctorImages);
+                            if ($user->hasRole('doctor') && $user->personal_number == '12345678910') {
+                                $doctorImg = asset('assets/img/doctors/doc.jpg');
+                            } elseif ($user->hasRole('doctor') && $user->id == 2) {
+                                $doctorImg = asset('assets/img/doctors/doctors-1.jpg');
+                            } elseif ($user->hasRole('doctor') && $user->id == 3) {
+                                $doctorImg = asset('assets/img/doctors/doctors-2.jpg');
+                            } elseif ($user->hasRole('doctor') && $user->id == 4) {
+                                $doctorImg = asset('assets/img/doctors/doctors-4.jpg');
+                            } elseif ($user->hasRole('doctor') && $user->id == 5) {
+                                $doctorImg = asset('assets/img/doctors/doctors-3.jpg');
+                            } elseif ($user->hasRole('doctor') && $user->id == 6) {
+                                $doctorImg = asset('assets/img/doctors/doc.jpg');
+                            } elseif ($user->hasRole('doctor')) {
+                                $doctorImg = asset('assets/img/doctors/' . $doctorImages[($user->id - 1) % $doctorImagesCount]);
+                            } else {
+                                $doctorImg = asset('img/no-image.jpg');
+                            }
+                        @endphp
+                        <img src="{{ $doctorImg }}" alt="Profile Picture" class="img-thumbnail" width="300px" />
                     </div>
             
                     <div class="col-sm-9">

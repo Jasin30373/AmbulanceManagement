@@ -104,15 +104,27 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
+                            @php
+                                $doctorImages = [
+                                    'doctors-1.jpg',
+                                    'doctors-2.jpg',
+                                    'doctors-4.jpg',
+                                    'doctors-3.jpg',
+                                    'doc.jpg',
+                                ];
+                                $imgIndex = 0;
+                                $doctorImagesCount = count($doctorImages);
+                            @endphp
                             @if ($doctors != null)
                                 @foreach ($doctors->take(10) as $doctor)
                                     <li class="list-group-item d-flex align-items-center">
-                                        <img src="{{ asset('assets/img/doctors/doctor-sample.jpg') }}" alt="Profile Picture" class="rounded-circle mr-3" width="40" height="40">
+                                        <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Picture" class="rounded-circle mr-3" width="40" height="40">
                                         <div>
                                             <div class="font-weight-bold">{{$doctor->name}}</div>
                                             <div class="text-muted small">{{$doctor->type_of_doctor}}</div>
                                         </div>
                                     </li>
+                                    @php $imgIndex++; @endphp
                                 @endforeach
                             @else
                                 <li class="list-group-item">No doctor data found.</li>

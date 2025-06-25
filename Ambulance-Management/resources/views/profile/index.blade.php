@@ -37,8 +37,8 @@
                                 $doctorImages = [
                                     'doctors-1.jpg',
                                     'doctors-2.jpg',
-                                    'doctors-3.jpg',
                                     'doctors-4.jpg',
+                                    'doctors-3.jpg',
                                     'doc.jpg',
                                 ];
                                 $imgIndex = 0;
@@ -57,7 +57,19 @@
                                     @endif
                                     <td>
                                         @if ($type == 'Doctors')
-                                            <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex] ?? $doctorImages[$doctorImagesCount-1])) }}" alt="Profile Image" width="50">
+                                            @if ($user->id == 2)
+                                                <img src="{{ asset('assets/img/doctors/doctors-1.jpg') }}" alt="Profile Image" width="50">
+                                            @elseif ($user->id == 3)
+                                                <img src="{{ asset('assets/img/doctors/doctors-2.jpg') }}" alt="Profile Image" width="50">
+                                            @elseif ($user->id == 4)
+                                                <img src="{{ asset('assets/img/doctors/doctors-4.jpg') }}" alt="Profile Image" width="50">
+                                            @elseif ($user->id == 5)
+                                                <img src="{{ asset('assets/img/doctors/doctors-3.jpg') }}" alt="Profile Image" width="50">
+                                            @elseif ($user->id == 6)
+                                                <img src="{{ asset('assets/img/doctors/doc.jpg') }}" alt="Profile Image" width="50">
+                                            @else
+                                                <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Image" width="50">
+                                            @endif
                                         @endif
                                     </td>
                                     @php $imgIndex++; @endphp
@@ -83,7 +95,7 @@
                 <div class="mt-4">
                     @if($type=='Patients')
                         <a href="{{ route('registerpatient') }}" class="btn btn-primary">Add Patient</a>
-                    @else
+                    @elseif(Auth::user()->hasRole('admin'))
                         <a href="{{ route('register') }}" class="btn btn-primary">Add Employee</a>
                     @endif
                 </div>
