@@ -8,43 +8,49 @@
     <div class="container-fluid mt-4">
         <div class="row mb-4">
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm border-left-primary">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="mr-3">
-                            <span class="badge badge-primary p-3"><i class="fa fa-stethoscope fa-2x"></i></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-0">{{$doctors->count()}}</h3>
-                            <div class="text-muted">Doctors</div>
+                <a href="{{ route('profile.index', ['type' => 'doctor']) }}" class="text-decoration-none">
+                    <div class="card shadow-sm border-left-primary h-100" style="cursor:pointer;">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="mr-3">
+                                <span class="badge badge-primary p-3"><i class="fa fa-stethoscope fa-2x"></i></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-0">{{$doctors->count()}}</h3>
+                                <div class="text-muted">Doctors</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm border-left-success">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="mr-3">
-                            <span class="badge badge-success p-3"><i class="fa fa-user-o fa-2x"></i></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-0">{{$patients->count()}}</h3>
-                            <div class="text-muted">Patients</div>
+                <a href="{{ route('profile.index', ['type' => 'patient']) }}" class="text-decoration-none">
+                    <div class="card shadow-sm border-left-success h-100" style="cursor:pointer;">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="mr-3">
+                                <span class="badge badge-success p-3"><i class="fa fa-user-o fa-2x"></i></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-0">{{$patients->count()}}</h3>
+                                <div class="text-muted">Patients</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card shadow-sm border-left-info">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="mr-3">
-                            <span class="badge badge-info p-3"><i class="fa fa-user-md fa-2x"></i></span>
-                        </div>
-                        <div>
-                            <h3 class="mb-0">{{$appointments->count()}}</h3>
-                            <div class="text-muted">Appointments</div>
+                <a href="{{ route('appointments.index') }}" class="text-decoration-none">
+                    <div class="card shadow-sm border-left-info h-100" style="cursor:pointer;">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="mr-3">
+                                <span class="badge badge-info p-3"><i class="fa fa-user-md fa-2x"></i></span>
+                            </div>
+                            <div>
+                                <h3 class="mb-0">{{$appointments->count()}}</h3>
+                                <div class="text-muted">Appointments</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -117,13 +123,15 @@
                             @endphp
                             @if ($doctors != null)
                                 @foreach ($doctors->take(10) as $doctor)
-                                    <li class="list-group-item d-flex align-items-center">
-                                        <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Picture" class="rounded-circle mr-3" width="40" height="40">
-                                        <div>
-                                            <div class="font-weight-bold">{{$doctor->name}}</div>
-                                            <div class="text-muted small">{{$doctor->type_of_doctor}}</div>
-                                        </div>
-                                    </li>
+                                    <a href="{{ route('profile.details', ['id' => $doctor->id]) }}" class="text-decoration-none text-dark">
+                                        <li class="list-group-item d-flex align-items-center" style="cursor:pointer;">
+                                            <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Picture" class="rounded-circle mr-3" width="40" height="40">
+                                            <div>
+                                                <div class="font-weight-bold">{{$doctor->name}}</div>
+                                                <div class="text-muted small">{{$doctor->type_of_doctor}}</div>
+                                            </div>
+                                        </li>
+                                    </a>
                                     @php $imgIndex++; @endphp
                                 @endforeach
                             @else
@@ -198,7 +206,7 @@
                                                 <tr>
                                                     <td>{{$patient->name}}</td>
                                                     <td>{{$patient->email}}</td>
-                                                    <td>{{$patient->number}}</td>
+                                                    <td>{{$patient->phone_number}}</td>
                                                 </tr>
                                             @endforeach
                                         @else
