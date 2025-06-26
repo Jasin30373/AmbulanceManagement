@@ -16,9 +16,7 @@ To install and use this application, follow these steps:
 
 1 - **Clone this repository to your local machine :**
 
-**Clone with SSH:** git clone git@gitlab.com:ambulance-management-system/ambulance-management-system.git
-
-**Clone with HTTPS:** git clone https://gitlab.com/ambulance-management-system/ambulance-management-system.git
+**Clone with HTTPS:** https://github.com/Jasin30373/AmbulanceManagement.git
 
 2 - **Start XAMPP** application and click start button on Apache and MySQL.
 
@@ -32,8 +30,41 @@ php artisan serve
 
 5 -  **Login with the account that is saved after seeding the database:**
    - Use the following credentials for the first login:
+    ## Administrator
      - **Email:** admin@admin.com
      - **Password:** Admin123@
+
+    ## Doctors
+
+     - **Email:** jasin1@gmail.com
+     - **Password:** Jasin123@
+
+     - **Email:** vjollca@gmail.com
+     - **Password:** Vjollca123@
+
+     - **Email:** artan@gmail.com
+     - **Password:** Artan123@
+
+     - **Email:** burim@gmail.com	
+     - **Password:** Burim123@
+
+     - **Email:** astrit@gmail.com
+     - **Password:** Astrit123@
+
+    ## Patients
+     - **Email:** uvejs@gmail.com
+     - **Password:** Uvejs123@
+
+     - **Email:** hani@gmail.com
+     - **Password:** Hani123@
+
+     - **Email:** Besim@gmail.com
+     - **Password:** Besim123@
+
+
+     
+     
+
 
 ### Usage
 To use this application, simply login with the information above and register new users(patients, doctors, nurses). Try making new appointments and write reports for those appointments. Make sure to try all the features of the project.
