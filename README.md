@@ -30,9 +30,9 @@ php artisan serve
 
 5 -  **Login with the account that is saved after seeding the database:**
    - Use the following credentials for the first login:
-   
-    ## Administrator
 
+    ## Administrator
+   
      - **Email:** admin@admin.com
      - **Password:** Admin123@
 
