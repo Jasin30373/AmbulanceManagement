@@ -45,10 +45,17 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request, $id = null): View
     {
+        $authUser = Auth::user();
+        if ($authUser->hasRole('admin')) {
+            if (!$id) abort(404);
+            $user = \App\Models\User::findOrFail($id);
+        } else {
+            $user = $authUser;
+        }
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
         ]);
     }
     
@@ -56,24 +63,30 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, $id = null): RedirectResponse
     {
-        //ddd($request);
-        $request->user()->fill($request->validated());
+        $authUser = Auth::user();
+        if ($authUser->hasRole('admin')) {
+            if (!$id) abort(404);
+            $user = \App\Models\User::findOrFail($id);
+        } else {
+            $user = $authUser;
+        }
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
         if($request->hasFile('profile_image')){
-            $path = Auth::user()->profile_image;
+            $path = $user->profile_image;
             if($path != null && Storage::disk('public')->exists($path)){
                 Storage::disk('public')->delete($path);
             }
-            $request->user()['profile_image']= $request->file('profile_image')->store('profile_images','public');
+            $user['profile_image']= $request->file('profile_image')->store('profile_images','public');
         }
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit', ['id' => $user->id])->with('status', 'profile-updated');
     }
 
     /**

@@ -73,18 +73,17 @@
                                         @endif
                                     </td>
                                     @php $imgIndex++; @endphp
+                                    @if($type == 'Patients')
+                                        <!-- No action column for patients, revert to original state -->
+                                    @endif
                                     @if(Auth::user()->hasRole('admin'))
-                                        <td>
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <form action="{{ route('profile.delete', ['id' => $user->id]) }}" method="post" class="dropdown-item" onsubmit="return confirm('Are you sure you want to delete your profile?');">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-link text-decoration-none"><i class="fa fa-trash-o m-r-5"></i> Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                        <td class="d-flex align-items-center">
+                                            <a href="{{ route('profile.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary mr-2"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <form action="{{ route('profile.delete', ['id' => $user->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this employee?');" style="display:inline;">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o m-r-5"></i> Delete</button>
+                                            </form>
                                         </td>
                                     @endif
                                 </tr>

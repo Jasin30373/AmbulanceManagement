@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/details/{id}', [ProfileController::class, 'details'])->name('profile.details');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/update/{id?}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/employees/{type?}', [ProfileController::class, 'index'])->name('profile.index');  
     Route::match(['post', 'delete'], '/profile/delete/{id}', [ProfileController::class, 'del'])->name('profile.delete');
@@ -54,4 +54,5 @@ Route::middleware('role:doctor|nurse')->group(function () {
 Route::middleware('role:doctor')->group(function () {
 Route::post('/reports/doctor/{id}/{aid}', [ReportController::class, 'createByDoctor'])->name('reports.createbydoctor');
 });
+Route::get('/profile/edit/{id?}', [ProfileController::class, 'edit'])->name('profile.edit');
 require __DIR__.'/auth.php';

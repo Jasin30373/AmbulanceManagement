@@ -14,9 +14,10 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    <form method="post" action="{{ route('profile.update', ['id' => $user->id]) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+        <input type="hidden" name="id" value="{{ $user->id }}">
 
         <div class="mb-3">
             <label for="name" class="form-label">{{ __('Name') }}</label>
