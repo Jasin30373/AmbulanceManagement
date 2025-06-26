@@ -58,18 +58,20 @@
                                     <td>
                                         @if ($user->hasRole('admin'))
                                             <img src="{{ asset('assets/img/doctors/admin.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @elseif ($user->id == 2)
-                                            <img src="{{ asset('assets/img/doctors/doctors-1.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @elseif ($user->id == 3)
-                                            <img src="{{ asset('assets/img/doctors/doctors-2.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @elseif ($user->id == 4)
-                                            <img src="{{ asset('assets/img/doctors/doctors-4.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @elseif ($user->id == 5)
-                                            <img src="{{ asset('assets/img/doctors/doctors-3.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @elseif ($user->personal_number == '12345678910')
-                                            <img src="{{ asset('assets/img/doctors/doc.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
-                                        @else
-                                            <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                        @elseif ($type == 'Doctors' || $type == 'Employees')
+                                            @if ($user->id == 2)
+                                                <img src="{{ asset('assets/img/doctors/doctors-1.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @elseif ($user->id == 3)
+                                                <img src="{{ asset('assets/img/doctors/doctors-2.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @elseif ($user->id == 4)
+                                                <img src="{{ asset('assets/img/doctors/doctors-4.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @elseif ($user->id == 5)
+                                                <img src="{{ asset('assets/img/doctors/doctors-3.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @elseif ($user->personal_number == '12345678910')
+                                                <img src="{{ asset('assets/img/doctors/doc.jpg') }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @else
+                                                <img src="{{ asset('assets/img/doctors/' . ($doctorImages[$imgIndex % $doctorImagesCount])) }}" alt="Profile Image" width="70" height="70" style="object-fit:cover; border-radius: 8px;">
+                                            @endif
                                         @endif
                                     </td>
                                     @php $imgIndex++; @endphp
