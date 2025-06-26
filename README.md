@@ -30,7 +30,9 @@ php artisan serve
 
 5 -  **Login with the account that is saved after seeding the database:**
    - Use the following credentials for the first login:
+   
     ## Administrator
+
      - **Email:** admin@admin.com
      - **Password:** Admin123@
 
@@ -52,6 +54,7 @@ php artisan serve
      - **Password:** Astrit123@
 
     ## Patients
+   
      - **Email:** uvejs@gmail.com
      - **Password:** Uvejs123@
 
